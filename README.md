@@ -24,16 +24,6 @@ This project performs data analysis on a generated dataset using the Plato data 
   - Data visualization (histograms, scatter plots)
 - Logging and rich reporting
 
-## Project Structure
-
-- `core/`: Core data generation and ingestion functionality
-- `data_transformation/`: Data cleaning and transformation modules
-- `data_analysis/`: Qualitative and quantitative analysis modules 
-- `utils/`: Utility functions for logging
-- `demo.ipynb`: Jupyter notebook demonstrating usage of the framework
-- `requirements.txt`: Python dependencies
-- `config.json`: Configuration file for analysis parameters
-
 ## Usage
 
 1. Install the required Python packages: `pip install -r requirements.txt`
