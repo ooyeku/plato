@@ -24,10 +24,10 @@ class Config:
         return {
             "data_ingestion": {
                 "csv_loader": {
-                    "db_name": "plato-broken.db"
+                    "db_name": "plato.db"
                 },
                 "crosstab_loader": {
-                    "db_name": "plato-broken.db"
+                    "db_name": "plato.db"
                 }
             },
             "data_transformation": {
@@ -66,7 +66,7 @@ class Config:
                 "level": "INFO"
             },
             "database": {
-                "name": "plato-broken.db",
+                "name": "plato.db",
                 "path": "./database/"
             }
         }

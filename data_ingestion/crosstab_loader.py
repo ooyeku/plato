@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 
 class CrosstabLoader:
-    def __init__(self, db_name='plato-broken.db'):
+    def __init__(self, db_name='plato.db'):
         self.db_handler = SQLiteHandler(db_name)
 
     def load_crosstab(self, file_path, sheet_name=None, table_name=None, save_to_db=False, **kwargs):

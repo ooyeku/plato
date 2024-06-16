@@ -4,7 +4,7 @@ from utils.logger import log_info, log_warning, log_error
 
 
 class CSVLoader:
-    def __init__(self, db_name='plato-broken.db'):
+    def __init__(self, db_name='plato.db'):
         self.db_handler = SQLiteHandler(db_name)
 
     def load_csv(self, file_path, table_name=None, save_to_db=False, **kwargs):

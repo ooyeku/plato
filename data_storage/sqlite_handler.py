@@ -8,9 +8,9 @@ class SQLiteHandler:
     SQLiteHandler class is used to handle database operations in SQLite.
 
     Methods:
-    - __init__(self, db_name='plato-broken.db'):
+    - __init__(self, db_name='plato.db'):
         Constructor method that initializes the SQLiteHandler object with a database name.
-        :param db_name: Optional parameter specifying the name of the database (default is 'plato-broken.db').
+        :param db_name: Optional parameter specifying the name of the database (default is 'plato.db').
         :return: None
 
     - create_connection(self):
@@ -37,7 +37,7 @@ class SQLiteHandler:
         :param table_name: The name of the table to load.
         :return: The loaded pandas DataFrame, or None if an error occurs.
     """
-    def __init__(self, db_name='plato-broken.db'):
+    def __init__(self, db_name='plato.db'):
         self.engine = create_engine(f'sqlite:///{db_name}')
         logger.info(f"Database connection created with {db_name}")
 
