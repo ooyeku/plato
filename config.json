@@ -1,0 +1,58 @@
+{
+    "data_ingestion": {
+        "csv_loader": {
+            "db_name": "plato.db"
+        },
+        "crosstab_loader": {
+            "db_name": "plato.db"
+        }
+    },
+    "data_transformation": {
+        "cleaner": {
+            "missing_value_strategy": "mean",
+            "duplicate_removal": true
+        },
+        "transformer": {
+            "label_encoding_columns": [],
+            "one_hot_encoding_columns": [],
+            "scaling_method": "minmax",
+            "scaling_columns": []
+        }
+    },
+    "data_analysis": {
+        "qualitative": {
+            "sentiment_analysis_column": "review",
+            "wordcloud_column": "review",
+            "keyword_extraction_column": "review",
+            "keyword_extraction_method": "tfidf",
+            "keyword_extraction_top_n": 5
+        },
+        "quantitative": {
+            "descriptive_statistics_columns": [],
+            "correlation_matrix_columns": [],
+            "linear_regression_target": "score",
+            "linear_regression_features": [
+                "age",
+                "income"
+            ],
+            "hypothesis_testing_columns": [
+                "score",
+                "age"
+            ],
+            "hypothesis_testing_method": "t-test",
+            "histogram_column": "income",
+            "histogram_bins": 10,
+            "scatter_plot_columns": [
+                "age",
+                "score"
+            ]
+        }
+    },
+    "logging": {
+        "level": "INFO"
+    },
+    "database": {
+        "name": "plato.db",
+        "path": "./database/"
+    }
+}

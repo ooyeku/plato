@@ -1,0 +1,16 @@
+pandas
+numpy
+scipy
+matplotlib
+seaborn
+scikit-learn
+statsmodels
+nltk
+sqlalchemy
+tqdm
+openpyxl
+wordcloud
+rich
+plotly
+faker
+jupyter
