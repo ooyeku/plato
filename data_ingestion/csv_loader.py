@@ -52,4 +52,5 @@ class CSVLoader:
     def load_multiple_csvs(self, file_paths, table_names=None, save_to_db=False, **kwargs):
         futures = [self.executor.submit(self.load_csv, file_path, table_names[idx] if table_names else None, save_to_db,
                                         **kwargs) for idx, file_path in enumerate(file_paths)]
+        log_info("Loading the following CSV files: " + ', '.join(file_paths))
         return [future.result() for future in futures]
