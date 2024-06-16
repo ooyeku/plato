@@ -7,6 +7,38 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
+"""
+DataCleaner Class
+-----------------
+
+This class is designed for cleaning and pre-processing DataFrame objects. The following cleaning operations are implemented -
+duplicate removal, filling missing values, dropping rows with missing values, replacing specific values, removing outliers,
+converting datatype of columns, normalizing and standardizing data.
+
+Methods
+-------
+- __init__: Constructor takes in the input DataFrame and creates a copy for cleaning.
+- remove_duplicates(self, subset=None, keep='first'): This method removes duplicate rows based on some subset of columns.
+    By default, it keeps the first occurrence of the duplicate.
+- fill_missing_values(self, strategy='mean', columns=None): This method fills missing values with mean, median, mode or any
+    specified value (provided as strategy). By default, it is applied to all columns.
+- drop_missing_values(self, columns=None, how='any'): This method drops rows with missing values. It allows selection of
+    specific columns and dropping strategy (any or all).
+- replace_values(self, to_replace, value, columns=None): This method replaces specific values in selected columns.
+- remove_outliers(self, columns=None, method='IQR', factor=1.5): This method removes outliers from the DataFrame using either
+    the IQR method or the Z-score method.
+- convert_data_types(self, columns, target_type, **kwargs): This method converts data types of the specified columns to the
+    target data type. Additionally, dtype-specific keyword arguments can be provided.
+- normalize_data(self, columns=None): This method scales the specified columns of the DataFrame so that they have a minimum of
+    0 and a maximum of 1.
+- standardize_data(self, columns=None): This method standardizes the specified columns of the DataFrame so they have a mean of
+    0 and a standard deviation of 1.
+- get_cleaned_data(self): This method returns the cleaned DataFrame.
+
+Log messages are generated after each cleaning operation to track the changes to the data.
+"""
+
+
 class DataCleaner:
     def __init__(self, df):
         self.df = df.copy()

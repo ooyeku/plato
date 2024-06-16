@@ -4,6 +4,25 @@ from faker import Faker
 from joblib import Parallel, delayed
 
 
+"""
+DataGenerator class in Python is used to generate fake data based on specified requirements. It's often used for testing, populating databases for
+development environments, etc.
+
+Attributes:
+    num_rows (int): Defines the number of rows for the fake data to be created.
+    fake (Faker): An instance of the Faker module, responsible for generating fake data.
+    data (pd.DataFrame): The generated fake data stored as a pandas DataFrame.
+
+Functions:
+    __init__(): Initializes the DataGenerator instance with the given number of rows.
+    add_column(): Adds a new column to the DataFrame with fake data values based on the given data type and options.
+    generate(): Returns the generated DataFrame with the fake data.
+
+Note:
+    Specifications for each fake data type (integer, email, date, etc.) and the corresponding data generation mechanisms are defined in
+    the add_column() function. Modifications or additions to data types should be done in this function.
+"""
+
 class DataGenerator:
     def __init__(self, num_rows):
         self.num_rows = num_rows

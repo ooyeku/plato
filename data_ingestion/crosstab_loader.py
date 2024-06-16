@@ -7,6 +7,24 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
+"""
+The CrosstabLoader class provides a set of methods to load crosstabs from Excel files into pandas DataFrames and optionally save them to a SQLite database.
+
+Attributes:
+    db_handler (SQLiteHandler instance): An instance of SQLiteHandler to interact with the SQLite database.
+
+Main Methods:
+    - __init__: Initialize CrosstabLoader with an optional SQLite database name. Defaults to 'plato.db'.
+    - load_crosstab: Load a crosstab from an Excel file into a DataFrame and optionally save it to the database.
+    - load_multiple_crosstabs: Load crosstabs from multiple Excel files into DataFrames and optionally save them to the database.
+    - load_crosstab_to_db: Load a crosstab directly to the database from an Excel file without returning a DataFrame.
+
+Remarks:
+    - The load_crosstab method returns a DataFrame if one sheet is loaded from the file or a dictionary of DataFrames if multiple sheets are loaded.
+    - The load_multiple_crosstabs returns a list of DataFrames or dictionaries of DataFrames.
+    - The **kwargs in load_crosstab, load_multiple_crosstabs, and load_crosstab_to_db can be used to pass any additional parameters to pd.read_excel.
+"""
+
 class CrosstabLoader:
     def __init__(self, db_name='plato.db'):
         self.db_handler = SQLiteHandler(db_name)

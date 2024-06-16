@@ -8,6 +8,49 @@ from sklearn.preprocessing import MinMaxScaler
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+"""
+The DataTransformer class acts as a container for various data transformation operations that could be performed
+on a pandas DataFrame. This is designed to be an easy-to-use, chainable interface for data preprocessing tasks that
+is built on the Pandas DataFrame structure. The DataTransformer class structure makes it possible to complete
+several transformation tasks in a single line of code, treating the transformations as methods that modify the
+instance's DataFrame.
+
+Instance Attributes:
+    df (pd.DataFrame): The DataFrame to process. It is a copy of the original DataFrame to prevent any unwanted
+        alterations to the original data.
+
+Class Methods:
+    __init__(self, df): Initializes the instance and creates a copy of the input DataFrame.
+
+    encode_labels(self, columns): Label encodes the data of the specified columns in the DataFrame.
+
+    one_hot_encode(self, columns): Performs one-hot encoding on the data of the specified columns in the DataFrame.
+
+    scale_data(self, columns, method='minmax'): Scales data within the specified 'columns' using the provided
+        'method'. By default, this is set to the 'minmax' method.
+
+    log_transform(self, columns): Applies a log transformation to the data in the specified columns of the DataFrame.
+
+    apply_custom_transform(self, columns, func): Applies a custom transformation function 'func' to the data of
+        specified 'columns' in the DataFrame.
+
+    bin_data(self, columns, bins, labels=None): Bins data into discrete intervals in the specified 'columns' of
+        the DataFrame using the criteria defined in 'bins'. Labels for the bins can be optionally provided.
+
+    get_transformed_data(self): Returns the transformed DataFrame for use in further processing or machine learning
+        tasks.
+
+Shared method parameters:
+    Method parameters of interest include 'columns', often a list of column names. These values dictate which columns
+    the transformation should be applied to. In many methods, these transformations can be chained, enabling
+    sequential transformation using a single line of code.
+
+Logging:
+    In every method apart from the constructor, logging is performed to indicate the success of the transformation
+    and record the columns that have been transformed. This is useful in both error tracking and retracing the
+    transformation steps.
+"""
+
 class DataTransformer:
     def __init__(self, df):
         self.df = df.copy()
