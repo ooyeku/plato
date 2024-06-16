@@ -13,6 +13,26 @@ logger.setLevel("INFO")
 
 
 class QuantitativeAnalysis:
+    """
+    The QuantitativeAnalysis class provides a set of methods to perform quantitative analysis on numerical data.
+
+    Attributes:
+        df (pd.DataFrame): The DataFrame containing the numerical data.
+
+    Main Methods:
+        - descriptive_statistics: Calculate descriptive statistics for the DataFrame.
+        - correlation_matrix: Calculate the correlation matrix for the DataFrame.
+        - plot_correlation_matrix: Plot the correlation matrix.
+        - linear_regression: Perform linear regression.
+        - hypothesis_testing: Perform hypothesis testing between two columns.
+        - plot_histogram: Plot a histogram of a specific column.
+        - plot_scatter: Plot a scatter plot between two columns.
+        - get_quantitative_data: Get the DataFrame with quantitative analysis results.
+
+    Remarks:
+        - The linear regression method uses the scikit-learn LinearRegression model.
+        - The hypothesis testing method supports t-tests and ANOVA tests.
+    """
     def __init__(self, df):
         self.df = df.copy()
 

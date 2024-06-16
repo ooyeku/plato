@@ -12,6 +12,24 @@ logger.setLevel("INFO")
 
 
 class Modeler:
+    """
+    The Modeler class provides a set of methods to train and evaluate machine learning models.
+
+    Attributes:
+        df (pd.DataFrame): The DataFrame containing the data.
+
+    Main Methods:
+        - train_test_split: Split the data into training and testing sets.
+        - linear_regression: Train and evaluate a linear regression model.
+        - logistic_regression: Train and evaluate a logistic regression model.
+        - decision_tree_classifier: Train and evaluate a decision tree classifier.
+        - decision_tree_regressor: Train and evaluate a decision tree regressor.
+        - random_forest_classifier: Train and evaluate a random forest classifier.
+        - random_forest_regressor: Train and evaluate a random forest regressor.
+
+    Remarks:
+        - The decision tree and random forest methods support hyperparameter tuning with GridSearchCV.
+    """
     def __init__(self, df):
         self.df = df.copy()
 

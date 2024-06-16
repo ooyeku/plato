@@ -11,6 +11,22 @@ logger.setLevel("INFO")
 
 
 class QualitativeAnalysis:
+    """
+    The QualitativeAnalysis class provides a set of methods to perform qualitative analysis on text data.
+
+    Attributes:
+        df (pd.DataFrame): The DataFrame containing the text data.
+
+    Main Methods:
+        - sentiment_analysis: Perform sentiment analysis on a text column.
+        - generate_wordcloud: Generate a word cloud from a text column.
+        - keyword_extraction: Extract keywords from a text column.
+        - get_qualitative_data: Get the DataFrame with qualitative analysis results.
+
+    Remarks:
+        - The sentiment analysis method uses the VADER sentiment analysis tool.
+        - The keyword extraction method supports both TF-IDF and count-based methods.
+    """
     def __init__(self, df):
         self.df = df.copy()
 

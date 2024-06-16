@@ -8,6 +8,27 @@ from typing import List, Optional, Dict, Any
 
 
 class Visualizer:
+    """
+     The Visualizer class provides a set of methods to visualize data using plots and charts.
+
+        Attributes:
+            df (pd.DataFrame): The DataFrame containing the data.
+
+        Main Methods:
+            - plot_histogram: Plot a histogram of a specific column.
+            - plot_scatter: Plot a scatter plot between two columns.
+            - plot_box: Plot a box plot of a column by another column.
+            - plot_heatmap: Plot a heatmap of the correlation matrix.
+            - plot_line: Plot a line plot of a column over another column.
+            - plot_pie: Plot a pie chart of a column.
+            - plot_bar: Plot a bar plot of a column by another column.
+            - plot_violin: Plot a violin plot of a column by another column.
+            - plot_pairplot: Plot a pairplot of the DataFrame.
+            - plot_distribution: Plot a distribution plot of a column.
+            - plot_correlation_matrix: Plot a correlation matrix heatmap.
+            - plot_3d_scatter: Plot a 3D scatter plot between three columns.
+            - plot_facet_grid: Plot a facet grid of scatter plots.
+      """
     def __init__(self, df: pd.DataFrame):
         self.df = df.copy()
 

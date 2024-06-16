@@ -5,28 +5,28 @@ from concurrent.futures import ThreadPoolExecutor
 import os
 
 
-"""
-CSVLoader Class - Main Object Definition
-
-The CSVLoader class is a high level utility class that provides design patterns for loading CSV files in a simplified way,
-streamlining the process of reading CSV files into dataframes and storing them into an SQLite database.
-
-It provides the following methods:
-
-- __init__(db_name='plato.db', chunk_size=50000): The constructor method for the CSVLoader class. It assigns specified
-                                                  database name, chunk size and thread pool executor.
-
-- load_csv(file_path, table_name=None, save_to_db=False, **kwargs): This method is designed to load a CSV file into a
-                                                                    dataframe. It optionally saves the dataframe into
-                                                                    a SQLite database.
-
-- load_multiple_csvs(file_paths, table_names=None, save_to_db=False, **kwargs): This method utilizes multithreading to
-                                                                                load multiple CSV files concurrently.
-                                                                                Optionally, it saves each dataframe into
-                                                                                a different table in the SQLite database.
-"""
-
 class CSVLoader:
+    """
+    CSVLoader Class - Main Object Definition
+
+    The CSVLoader class is a high level utility class that provides design patterns for loading CSV files in a simplified way,
+    streamlining the process of reading CSV files into dataframes and storing them into an SQLite database.
+
+    It provides the following methods:
+
+    - __init__(db_name='plato.db', chunk_size=50000): The constructor method for the CSVLoader class. It assigns specified
+                                                      database name, chunk size and thread pool executor.
+
+    - load_csv(file_path, table_name=None, save_to_db=False, **kwargs): This method is designed to load a CSV file into a
+                                                                        dataframe. It optionally saves the dataframe into
+                                                                        a SQLite database.
+
+    - load_multiple_csvs(file_paths, table_names=None, save_to_db=False, **kwargs): This method utilizes multithreading to
+                                                                                    load multiple CSV files concurrently.
+                                                                                    Optionally, it saves each dataframe into
+                                                                                    a different table in the SQLite database.
+    """
+
     def __init__(self, db_name='plato.db', chunk_size=50000):
         self.db_handler = SQLiteHandler(db_name)
         self.chunk_size = chunk_size
