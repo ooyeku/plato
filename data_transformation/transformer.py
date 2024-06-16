@@ -1,13 +1,12 @@
 import pandas as pd
 import numpy as np
 import logging
-from sklearn.preprocessing import LabelEncoder, OneHotEncoder, StandardScaler, MinMaxScaler
+from category_encoders import OneHotEncoder, OrdinalEncoder
 from sklearn.preprocessing import MinMaxScaler
 
 # Setting up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-
 
 class DataTransformer:
     def __init__(self, df):
@@ -23,9 +22,8 @@ class DataTransformer:
         Returns:
             DataTransformer: self (to allow method chaining).
         """
-        le = LabelEncoder()
-        for column in columns:
-            self.df[column] = le.fit_transform(self.df[column])
+        encoder = OrdinalEncoder(cols=columns)
+        self.df = encoder.fit_transform(self.df)
         logger.info(f"Labels encoded for columns: {columns}")
         return self
 
@@ -39,23 +37,15 @@ class DataTransformer:
         Returns:
             DataTransformer: self (to allow method chaining).
         """
-        # check if 'columns' is a string (single column), if so convert it to a list
-        if isinstance(columns, str):
-            columns = [columns]
-
-        self.df = pd.get_dummies(self.df, columns=columns)
+        encoder = OneHotEncoder(cols=columns)
+        self.df = encoder.fit_transform(self.df)
         logger.info(f"One-hot encoding applied to columns: {columns}")
         return self
 
     def scale_data(self, columns, method='minmax'):
-        for col in columns:
-            if method == 'minmax':
-                scaler = MinMaxScaler()
-            else:
-                raise ValueError(f"Unknown method: {method}")
-
-            self.df[col] = scaler.fit_transform(self.df[col].values.reshape(-1, 1))
-            logger.info(f"Data scaled using {method} method for column: {col}")
+        scaler = MinMaxScaler()
+        self.df[columns] = scaler.fit_transform(self.df[columns])
+        logger.info(f"Data scaled using {method} method for columns: {columns}")
         return self
 
     def log_transform(self, columns):
@@ -102,33 +92,6 @@ class DataTransformer:
         self.df[columns] = pd.cut(self.df[columns], bins=bins, labels=labels)
         logger.info(f"Data binned for columns: {columns}")
         return self
-
-    # def polynomial_features(self, columns, degree=2, interaction_only=False, include_bias=False):
-    #     """
-    #     Generate polynomial features.
-    #
-    #     Parameters:
-    #         columns (list or str): Columns to generate polynomial features for.
-    #         degree (int): The degree of the polynomial features.
-    #         interaction_only (bool): Whether to include only interaction features.
-    #         include_bias (bool): Whether to include a bias column.
-    #
-    #     Returns:
-    #         DataTransformer: self (to allow method chaining).
-    #     """
-    #     from sklearn.preprocessing import PolynomialFeatures
-    #
-    #     poly = PolynomialFeatures(degree=degree, interaction_only=interaction_only, include_bias=include_bias)
-    #
-    #     # Check if columns is a string (single column), convert to dataframe and ensure it's 2-D
-    #     if isinstance(columns, str):
-    #         poly_features = poly.fit_transform(self.df[[columns]])
-    #     else:
-    #         poly_features = poly.fit_transform(self.df[columns])
-    #
-    # poly_columns = poly.get_feature_names_out(columns) self.df = pd.concat([self.df.drop(columns, axis=1),
-    # pd.DataFrame(poly_features, columns=poly_columns)], axis=1) logger.info(f"Polynomial features generated for
-    # columns: {columns} with degree {degree}") return self
 
     def get_transformed_data(self):
         """

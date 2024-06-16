@@ -21,7 +21,7 @@ def load_data(file_path: str, file_type: str = 'csv', **kwargs) -> pd.DataFrame:
     if file_type == 'csv':
         loader = CSVLoader()
         return loader.load_csv(file_path, **kwargs)
-    elif file_type == 'crosstab':
+    elif file_type == 'xlsx' or file_type == 'xls' or file_type == 'excel':
         loader = CrosstabLoader()
         return loader.load_crosstab(file_path, **kwargs)
     else:

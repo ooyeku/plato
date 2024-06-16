@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine, text
 import pandas as pd
 from utils.logger import logger
+from sqlalchemy.pool import StaticPool
 
 
 class SQLiteHandler:
@@ -38,7 +39,7 @@ class SQLiteHandler:
         :return: The loaded pandas DataFrame, or None if an error occurs.
     """
     def __init__(self, db_name='plato.db'):
-        self.engine = create_engine(f'sqlite:///{db_name}')
+        self.engine = create_engine(f'sqlite:///{db_name}', connect_args={'check_same_thread': False}, poolclass=StaticPool)
         logger.info(f"Database connection created with {db_name}")
 
     def create_connection(self):
@@ -50,8 +51,10 @@ class SQLiteHandler:
 
     def save_dataframe_to_db(self, df, table_name):
         try:
-            df.to_sql(table_name, con=self.engine, if_exists='replace', index=False)
-            logger.info(f"DataFrame saved to table {table_name}")
+            chunk_size = 2000
+            for i in range(0, len(df), chunk_size):
+                df.iloc[i:i+chunk_size].to_sql(table_name, con=self.engine, if_exists='append', index=False, method='multi')
+                logger.info(f"DataFrame saved to table {table_name}")
         except Exception as e:
             logger.error(f"Error saving DataFrame to table {table_name}: {e}")
 
