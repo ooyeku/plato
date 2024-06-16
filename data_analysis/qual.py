@@ -1,14 +1,13 @@
 import pandas as pd
 import numpy as np
-import logging
+from utils.logger import logger
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 
 # Setting up logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+logger.setLevel("INFO")
 
 
 class QualitativeAnalysis:

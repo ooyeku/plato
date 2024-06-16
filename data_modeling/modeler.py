@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import logging
+from utils.logger import logger
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.linear_model import LinearRegression, LogisticRegression
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
@@ -8,8 +8,7 @@ from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.metrics import mean_squared_error, r2_score, accuracy_score, classification_report
 
 # Configure logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("modeler")
+logger.setLevel("INFO")
 
 
 class Modeler:

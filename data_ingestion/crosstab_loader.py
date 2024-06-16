@@ -1,10 +1,9 @@
 import pandas as pd
-import logging
+from utils.logger import logger
 from data_storage.sqlite_handler import SQLiteHandler
 
 # Setting up logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+logger.setLevel("INFO")
 
 
 """

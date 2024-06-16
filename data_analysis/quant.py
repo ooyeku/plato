@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import logging
+from utils.logger import logger
 import seaborn as sns
 import matplotlib.pyplot as plt
 from scipy import stats
@@ -9,8 +9,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 
 # Setting up logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+logger.setLevel("INFO")
 
 
 class QuantitativeAnalysis:

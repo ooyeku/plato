@@ -1,12 +1,11 @@
 import pandas as pd
 import numpy as np
-import logging
 from category_encoders import OneHotEncoder, OrdinalEncoder
 from sklearn.preprocessing import MinMaxScaler
+from utils.logger import logger
 
 # Setting up logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+logger.setLevel("INFO")
 
 """
 The DataTransformer class acts as a container for various data transformation operations that could be performed

@@ -1,11 +1,9 @@
 import pandas as pd
 import numpy as np
-import logging
+from utils.logger import logger
 
 # Setting up logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
+logger.setLevel("INFO")
 
 """
 DataCleaner Class
