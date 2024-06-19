@@ -1,4 +1,3 @@
-import logging
 import pandas as pd
 from concurrent.futures import ThreadPoolExecutor
 from typing import List, Dict, Any
@@ -16,7 +15,7 @@ from data_storage.sqlite_handler import SQLiteHandler
 from data_storage.query_builder import QueryBuilder
 from utils.logger import logger
 
-logger.setLevel(logging.INFO)
+
 
 
 def load_data(file_path: str, file_type: str = 'csv', **kwargs) -> pd.DataFrame:

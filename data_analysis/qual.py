@@ -41,7 +41,7 @@ class QualitativeAnalysis:
             pd.DataFrame: DataFrame with sentiment scores.
         """
         sid = SentimentIntensityAnalyzer()
-        self.df['sentiment'] = self.df[text_column].apply(lambda x: sid.polarity_scores(x)['compound'])
+        self.df['sentiment'] = list(map(lambda x: sid.polarity_scores(x)['compound'], self.df[text_column]))
         logger.info(f"Sentiment analysis performed on column: {text_column}")
         return self.df
 
